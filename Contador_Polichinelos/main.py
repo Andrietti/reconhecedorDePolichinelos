@@ -15,7 +15,7 @@ theme = sg.theme('reddit')
 layout = [
     [sg.Image(filename='imagens\healthy.png', )],
     [sg.Text('Seja bem vindo ao OPEN-TRAINER')],
-    [sg.Button('Contador de polichinelos', key='polichinelos'), sg.Button('Contador de agachamentos')],
+    [sg.Button('Contador de polichinelos', key='polichinelos'), sg.Button('Contador de agachamentos', key='agachamento')],
     [sg.Button('Contador de flexões'), sg.Button('Contador de rosca direta')]
 ]
 
@@ -28,6 +28,9 @@ while True:
         break
     elif event == 'polichinelos':
         pol.polichinelos()
+    elif event == 'agachamento':
+        pol.agachamento()
     else:
         sg.popup('Lamento, essa função ainda não está completa :(')
-    
+
+     
