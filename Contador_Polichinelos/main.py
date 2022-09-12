@@ -26,5 +26,8 @@ while True:
 
     if event == sg.WINDOW_CLOSED:
         break
-    if event == 'polichinelos':
+    elif event == 'polichinelos':
         pol.polichinelos()
+    else:
+        sg.popup('Lamento, essa função ainda não está completa :(')
+    

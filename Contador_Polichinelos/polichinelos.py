@@ -9,7 +9,7 @@ import pyaudio
         
 
 
-video = cv2.VideoCapture(0) # Variável que armazena a função de captura de video,
+video = cv2.VideoCapture('agachamento.mp4') # Variável que armazena a função de captura de video,
 #no caso, como passamos como parâmetro o índice zero, em vez de um caminho de video,
 #irá fazer o video capture da webcam de índice 0 do nosso computador(no caso, a integrada)
 
@@ -114,8 +114,9 @@ def polichinelos():
             # Função utilizada para extrair as cordenadas finais dos pés e mãos
             distMO = math.hypot(moDX-moEX,moDY-moEY) 
             distPE = math.hypot(peDX-peEX,peDY-peEY)
+            distQUADRIL = math.hypot(quDX - quEX, quDY - quEY)
 
-            print(f'maos {distMO} pes {distPE}')
+            print(f'quadril: {distQUADRIL}')
             # maos <=150 pes >=150
 
 
