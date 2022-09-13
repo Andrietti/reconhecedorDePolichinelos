@@ -16,7 +16,7 @@ layout = [
     [sg.Image(filename='imagens\healthy.png', )],
     [sg.Text('Seja bem vindo ao OPEN-TRAINER')],
     [sg.Button('Contador de polichinelos', key='polichinelos'), sg.Button('Contador de agachamentos', key='agachamento')],
-    [sg.Button('Contador de flexões'), sg.Button('Contador de rosca direta')]
+    [sg.Button('Contador de flexões', key='flexao'), sg.Button('Contador de rosca direta')]
 ]
 
 window = sg.Window('Open-trainer', layout= layout, element_padding=(10, 10))
@@ -30,6 +30,8 @@ while True:
         pol.polichinelos()
     elif event == 'agachamento':
         pol.agachamento()
+    elif event == 'flexao':
+        pol.flexao()
     else:
         sg.popup('Lamento, essa função ainda não está completa :(')
 
