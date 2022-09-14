@@ -7,7 +7,7 @@ import keyboard
         
 
 
-video = cv2.VideoCapture('flexao.mp4') # Variável que armazena a função de captura de video,
+video = cv2.VideoCapture(0) # Variável que armazena a função de captura de video,
 #no caso, como passamos como parâmetro o índice zero, em vez de um caminho de video,
 #irá fazer o video capture da webcam de índice 0 do nosso computador(no caso, a integrada)
 
@@ -168,7 +168,7 @@ def polichinelos():
 
 def agachamento():
 
-    video = cv2.VideoCapture('agachamento curto.mp4')
+    video = cv2.VideoCapture('C:\\Users\\Usuario\\Desktop\\html\\Aula-Jonas\\reconhecedorDePolichinelos\\Contador_Polichinelos\\agachamento curto.mp4')
 
     contador = 0
     check = True
@@ -291,7 +291,7 @@ def agachamento():
 
 def flexao():
 
-    video = cv2.VideoCapture('flexao.mp4')
+    video = cv2.VideoCapture('C:\\Users\\Usuario\\Desktop\\html\\Aula-Jonas\\reconhecedorDePolichinelos\\Contador_Polichinelos\\flexao.mp4')
 
     contador = 0
     check = True

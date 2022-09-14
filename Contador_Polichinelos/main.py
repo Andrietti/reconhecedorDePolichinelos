@@ -3,8 +3,6 @@ import PySimpleGUI as sg
 import polichinelos as pol
 import pygame
 
-pygame.init() # iniciando o pygame
-pygame.mixer.music.load('olhotigre.mp3') # Fazendo o pygame carregar uma música
 
 
 
@@ -13,7 +11,7 @@ musica_tocando = True
 theme = sg.theme('reddit')
 
 layout = [
-    [sg.Image(filename='imagens\healthy.png', )],
+    [sg.Image(filename='C:\\Users\\Usuario\\Desktop\\html\\Aula-Jonas\\reconhecedorDePolichinelos\\Contador_Polichinelos\\imagens\\healthy.png', )],
     [sg.Text('Seja bem vindo ao OPEN-TRAINER')],
     [sg.Button('Contador de polichinelos', key='polichinelos'), sg.Button('Contador de agachamentos', key='agachamento')],
     [sg.Button('Contador de flexões', key='flexao'), sg.Button('Contador de rosca direta')]
