@@ -172,7 +172,7 @@ def polichinelos():
 
 def agachamento():
 
-    video = cv2.VideoCapture('C:\\Users\\Usuario\\Desktop\\html\\Aula-Jonas\\reconhecedorDePolichinelos\\Contador_Polichinelos\\agachamento curto.mp4')
+    video = cv2.VideoCapture(0)
 
     contador = 0
     check = True
@@ -245,12 +245,12 @@ def agachamento():
             # Condicionais para verificar as distâncias descrevidas a cima
             # E verificar se os polichinelos foram executados com base
             # Na distância das mãos e dos pés
-            if check == True and distQUADRIL >= 470 and distPE >= 120:
+            if check == True and distQUADRIL >= 370 and distPE >= 80:
                 contador +=1
                 check = False # Alterando a variável check para falsa para não contar
                  # Mais de um polichinelo
 
-            if distQUADRIL < 400 and distPE >= 120:
+            if distQUADRIL < 320 and distPE >= 80:
                 check = True # Quando o ultimo movimento é feito altera a variável para true
              # Para permitir que outro polichinelo seja finalizado e computado
 
@@ -289,7 +289,7 @@ def agachamento():
 
 def flexao():
 
-    video = cv2.VideoCapture('C:\\Users\\Usuario\\Desktop\\html\\Aula-Jonas\\reconhecedorDePolichinelos\\Contador_Polichinelos\\flexao.mp4')
+    video = cv2.VideoCapture(0)
 
     contador = 0
     check = True
@@ -365,12 +365,12 @@ def flexao():
             # Condicionais para verificar as distâncias descrevidas a cima
             # E verificar se os polichinelos foram executados com base
             # Na distância das mãos e dos pés
-            if check == True and omDY >= 730 and distCABECA <= 30:
+            if check == True and omDY >= 315 and distCABECA <= 100:
                 contador +=1
                 check = False # Alterando a variável check para falsa para não contar
                  # Mais de um polichinelo
 
-            if omDY <= 700 and distCABECA >= 40:
+            if omDY <= 300 and distCABECA >= 200:
                 check = True # Quando o ultimo movimento é feito altera a variável para true
              # Para permitir que outro polichinelo seja finalizado e computado
 
@@ -409,7 +409,7 @@ def flexao():
 
 def rosca_direta():
 
-    video = cv2.VideoCapture('C:\\Users\\Usuario\\Desktop\\html\\Aula-Jonas\\reconhecedorDePolichinelos\\Contador_Polichinelos\\rosca_direta.mp4')
+    video = cv2.VideoCapture(0)
 
     contador = 0
     check = True
