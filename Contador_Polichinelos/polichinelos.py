@@ -42,7 +42,6 @@ draw = mp.solutions.drawing_utils
 
 def polichinelos():
 
-    video = cv2.VideoCapture(0)
 
     contador = 0
     check = True
@@ -116,12 +115,13 @@ def polichinelos():
             quDX = int(points.landmark[pose.PoseLandmark.RIGHT_HIP].x*w)
 
             
+            
 
 
             # Função utilizada para extrair as cordenadas finais dos pés e mãos
             distMO = math.hypot(moDX-moEX,moDY-moEY) 
             distPE = math.hypot(peDX-peEX,peDY-peEY)
-            distQUADRIL = math.hypot(quDX - quEX, quDY - quEY)
+            distQUADRIL = math.hypot(quDY)
 
             print(f'quadril: {distQUADRIL}')
             # maos <=150 pes >=150
@@ -153,6 +153,9 @@ def polichinelos():
 
             texto = f'QTD {contador}'
 
+            if distQUADRIL >= 330:
+                texto = f'Abaixe sua câmera'
+
 
 
             ### Função que cria a forma
@@ -171,8 +174,6 @@ def polichinelos():
         cv2.waitKey(40)
 
 def agachamento():
-
-    video = cv2.VideoCapture(0)
 
     contador = 0
     check = True
@@ -245,6 +246,8 @@ def agachamento():
             # Condicionais para verificar as distâncias descrevidas a cima
             # E verificar se os polichinelos foram executados com base
             # Na distância das mãos e dos pés
+
+
             if check == True and distQUADRIL >= 370 and distPE >= 80:
                 contador +=1
                 check = False # Alterando a variável check para falsa para não contar
@@ -268,6 +271,9 @@ def agachamento():
 
             texto = f'QTD {contador}'
 
+            if distQUADRIL >= 400:
+                texto = f'Abaixe sua camera'
+
 
 
             ### Função que cria a forma
@@ -289,7 +295,6 @@ def agachamento():
 
 def flexao():
 
-    video = cv2.VideoCapture(0)
 
     contador = 0
     check = True
@@ -409,7 +414,6 @@ def flexao():
 
 def rosca_direta():
 
-    video = cv2.VideoCapture(0)
 
     contador = 0
     check = True

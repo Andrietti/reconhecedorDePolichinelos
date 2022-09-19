@@ -16,7 +16,7 @@ layout = [
     [sg.Button('Contador de polichinelos', key='polichinelos'), sg.Button('Contador de agachamentos', key='agachamento')],
     [sg.Button('Contador de rosca direta', key='rosca')]
 ]
-
+ 
 window = sg.Window('Open-trainer', layout= layout, element_padding=(10, 10))
 
 while True:
