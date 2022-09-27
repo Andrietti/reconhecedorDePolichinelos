@@ -154,7 +154,7 @@ def polichinelos():
             texto = f'QTD {contador}'
 
             if distQUADRIL >= 330:
-                texto = f'Abaixe sua câmera'
+                texto = f'Abaixe sua camera'
 
 
 
