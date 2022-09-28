@@ -3,6 +3,16 @@ import mediapipe as mp    # Biblioteca para a detecção de pontos de referênci
 import math               # Vai medir a distância entre os pontos
 import pygame             # Importando o pygame para tocar uma musica
 import keyboard
+import pandas as pd
+
+
+
+exercicios = {
+        'exercício' : ['Polichinelos', 'Abdominais'],
+        'repetições': [20, 30]
+    }
+
+dataframe = pd.DataFrame(exercicios)
 
         
 
@@ -132,6 +142,8 @@ def polichinelos():
             # Na distância das mãos e dos pés
             if check == True and distMO <=150 and distPE >=150:
                 contador +=1
+                exercicios['repetições'][0] -= 1
+                
                 check = False # Alterando a variável check para falsa para não contar
                 # Mais de um polichinelo
 
@@ -154,7 +166,7 @@ def polichinelos():
             texto = f'QTD {contador}'
 
             if distQUADRIL >= 330:
-                texto = f'Abaixe sua camera'
+                texto = f'Se afaste um pouco'
 
 
 
@@ -271,7 +283,7 @@ def agachamento():
 
             texto = f'QTD {contador}'
 
-            if distQUADRIL >= 400:
+            if distQUADRIL >= 400 and check == True:
                 texto = f'Abaixe sua camera'
 
 
@@ -370,12 +382,12 @@ def flexao():
             # Condicionais para verificar as distâncias descrevidas a cima
             # E verificar se os polichinelos foram executados com base
             # Na distância das mãos e dos pés
-            if check == True and omDY >= 315 and distCABECA <= 100:
+            if check == True and omDY >= 400 and distCABECA >= 300:
                 contador +=1
                 check = False # Alterando a variável check para falsa para não contar
                  # Mais de um polichinelo
 
-            if omDY <= 300 and distCABECA >= 200:
+            if omDY < 400 and distCABECA >= 400:
                 check = True # Quando o ultimo movimento é feito altera a variável para true
              # Para permitir que outro polichinelo seja finalizado e computado
 
