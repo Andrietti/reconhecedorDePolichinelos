@@ -5,12 +5,13 @@ import pygame             # Importando o pygame para tocar uma musica
 import keyboard
 import pandas as pd
 import PySimpleGUI as sg
+import modo as mn
 
 
 
 exercicios = {
-        'exercício' : ['Polichinelos', 'Abdominais'],
-        'repetições': [20, 30]
+        'exercício' : ['Polichinelos', 'Agachamento', 'Rosca_Direta', 'Flexão'],
+        'repetições': [20, 20, 20 ,20]
     }
 
 dataframe = pd.DataFrame(exercicios)
@@ -55,8 +56,11 @@ def polichinelos():
 
     
 
+    if mn.modo == 'Personal':
+        contador = dataframe['repetições'][0]
+    else:
+        contador = 0
 
-    contador = dataframe['repetições'][0]
     check = True
     
     while True: # Loop para rodar o video
@@ -144,8 +148,11 @@ def polichinelos():
             # E verificar se os polichinelos foram executados com base
             # Na distância das mãos e dos pés
             if check == True and distMO <=150 and distPE >=150:
-                contador +=1
-                exercicios['repetições'][0] -= 1
+                if mn.modo == 'Personal':
+                    contador -=1
+                else:
+                    contador +=1
+                
                 
                 check = False # Alterando a variável check para falsa para não contar
                 # Mais de um polichinelo
@@ -190,7 +197,7 @@ def polichinelos():
 
 def agachamento():
 
-    contador = 0
+    contador = dataframe['repetições'][0]
     check = True
     
     while True: # Loop para rodar o video
@@ -264,7 +271,7 @@ def agachamento():
 
 
             if check == True and distQUADRIL >= 370 and distPE >= 80:
-                contador +=1
+                contador -=1
                 check = False # Alterando a variável check para falsa para não contar
                  # Mais de um polichinelo
 
@@ -311,7 +318,7 @@ def agachamento():
 def flexao():
 
 
-    contador = 0
+    contador = dataframe['repetições'][0]
     check = True
     
     while True: # Loop para rodar o video
@@ -386,7 +393,7 @@ def flexao():
             # E verificar se os polichinelos foram executados com base
             # Na distância das mãos e dos pés
             if check == True and omDY >= 400 and distCABECA >= 300:
-                contador +=1
+                contador -=1
                 check = False # Alterando a variável check para falsa para não contar
                  # Mais de um polichinelo
 
@@ -429,8 +436,10 @@ def flexao():
 
 def rosca_direta():
 
-
-    contador = dataframe['repetições'][0]
+    if mn.modo == 'Personal':
+        contador = dataframe['repetições'][0]
+    else:
+        contador = 0
     check = True
     
     while True: # Loop para rodar o video
@@ -515,7 +524,10 @@ def rosca_direta():
             # E verificar se os polichinelos foram executados com base
             # Na distância das mãos e dos pés
             if check == True and distMODY <= distOMBROD and distMOEY <= distOMBROE:
-                contador -=1
+                if mn.modo == 'Personal':
+                    contador -= 1
+                else:
+                    contador += 1
                 check = False # Alterando a variável check para falsa para não contar
                  # Mais de um polichinelo
 
@@ -525,8 +537,9 @@ def rosca_direta():
 
 
             if contador == 0:
-                sg.popup('Parabéns, você terminou suas repetições')
-                break
+                if mn.modo == 'Personal':
+                    sg.popup('Parabéns, você terminou suas repetições')
+                    break
                 
 
         
