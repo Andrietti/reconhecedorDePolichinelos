@@ -4,6 +4,7 @@ import math               # Vai medir a distância entre os pontos
 import pygame             # Importando o pygame para tocar uma musica
 import keyboard
 import pandas as pd
+import PySimpleGUI as sg
 
 
 
@@ -52,8 +53,10 @@ draw = mp.solutions.drawing_utils
 
 def polichinelos():
 
+    
 
-    contador = 0
+
+    contador = dataframe['repetições'][0]
     check = True
     
     while True: # Loop para rodar o video
@@ -427,7 +430,7 @@ def flexao():
 def rosca_direta():
 
 
-    contador = 0
+    contador = dataframe['repetições'][0]
     check = True
     
     while True: # Loop para rodar o video
@@ -512,7 +515,7 @@ def rosca_direta():
             # E verificar se os polichinelos foram executados com base
             # Na distância das mãos e dos pés
             if check == True and distMODY <= distOMBROD and distMOEY <= distOMBROE:
-                contador +=1
+                contador -=1
                 check = False # Alterando a variável check para falsa para não contar
                  # Mais de um polichinelo
 
@@ -520,6 +523,11 @@ def rosca_direta():
                 check = True # Quando o ultimo movimento é feito altera a variável para true
              # Para permitir que outro polichinelo seja finalizado e computado
 
+
+            if contador == 0:
+                sg.popup('Parabéns, você terminou suas repetições')
+                break
+                
 
         
 
