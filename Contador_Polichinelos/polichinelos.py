@@ -8,7 +8,7 @@ import PySimpleGUI as sg
 import modo as mn
 
 
-
+ 
 exercicios = {
         'exercício' : ['Polichinelos', 'Agachamento', 'Rosca_Direta', 'Flexão'],
         'repetições': [20, 20, 20 ,20]
@@ -16,7 +16,6 @@ exercicios = {
 
 dataframe = pd.read_excel('df.xlsx')
 
-print(dataframe)
         
 
 
@@ -33,7 +32,7 @@ pose = mp.solutions.pose
 # essa variável está armazeando a pose, passando como parâmetro
 # o mínimo de semelhança entre os modelos previamente carregados
 # e o video que será processado pela webcam.
-Pose = pose.Pose(min_tracking_confidence=0.5,min_detection_confidence=0.5)
+Pose = pose.Pose(min_tracking_confidence=0.5,min_detection_confidence=0.5, )
 
 
 # A variável armazena o método que usamos para desenhar as linhas e pontos
@@ -79,6 +78,8 @@ def polichinelos():
         # A conversão de uma imagem opencv2 para uma imagem RGB
         videoRGB = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
 
+        novaimg = cv2.resize(img, (1280, 900))
+
 
         # Essa variável vai armazenar o resultado do processamento do nosso video
         # Após o computador verificar se realmente existe um corpo no video
@@ -95,11 +96,11 @@ def polichinelos():
 
         # Esse método nós usamos para desenhar as ligações entre os pontos
         # Armazenados na variável points
-        draw.draw_landmarks(img,points,pose.POSE_CONNECTIONS)
+        draw.draw_landmarks(novaimg,points,pose.POSE_CONNECTIONS)
 
 
         # Extraindo as dimensões da imagem
-        h,w,_ = img.shape
+        h,w,_ = novaimg.shape
 
 
 
@@ -131,6 +132,7 @@ def polichinelos():
             quDY = int(points.landmark[pose.PoseLandmark.RIGHT_HIP].y*h)
 
             quDX = int(points.landmark[pose.PoseLandmark.RIGHT_HIP].x*w)
+
 
             
             
@@ -178,24 +180,24 @@ def polichinelos():
 
             texto = f'QTD {contador}'
 
-            if distQUADRIL >= 330:
+            if distQUADRIL >= 600:
                 texto = f'Se afaste um pouco'
 
 
 
             ### Função que cria a forma
             # De um retângulo no video
-            cv2.rectangle(img,(20,240),(280,120),(255,0,0),-1)
+            cv2.rectangle(novaimg,(1200,800),(50,700),(255,0,0),-1)
 
             ### Função que cria a forma
             # De um retângulo no video
 
             # Função para adicionar um texto a área de informações	
-            cv2.putText(img,texto,(40,200),cv2.FONT_HERSHEY_SIMPLEX,2,(255,255,255),5)
+            cv2.putText(novaimg,texto,(40,760),cv2.FONT_HERSHEY_SIMPLEX,2,(255,255,255),5)
 
 
 
-        cv2.imshow('Resultado',img)
+        cv2.imshow('Resultado',novaimg)
         cv2.waitKey(40)
 
 def agachamento():
@@ -220,6 +222,7 @@ def agachamento():
         # O opencv Não usa o padrão RGB, então normalmente essa função é usada para
         # A conversão de uma imagem opencv2 para uma imagem RGB
         videoRGB = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+        novaimg = cv2.resize(img, (1280, 900))
 
 
         # Essa variável vai armazenar o resultado do processamento do nosso video
@@ -237,11 +240,11 @@ def agachamento():
 
         # Esse método nós usamos para desenhar as ligações entre os pontos
         # Armazenados na variável points
-        draw.draw_landmarks(img,points,pose.POSE_CONNECTIONS)
+        draw.draw_landmarks(novaimg,points,pose.POSE_CONNECTIONS)
 
 
         # Extraindo as dimensões da imagem
-        h,w,_ = img.shape
+        h,w,_ = novaimg.shape
 
 
 
@@ -276,7 +279,7 @@ def agachamento():
             # Na distância das mãos e dos pés
 
 
-            if check == True and distQUADRIL >= 370 and distPE >= 80:
+            if check and distQUADRIL >= 640 and distPE >= 250:
                 if mn.modo == 'Personal':
                     contador -=1
                     exercicios['repetições'][1] -= 1
@@ -286,7 +289,7 @@ def agachamento():
                 check = False # Alterando a variável check para falsa para não contar
                  # Mais de um polichinelo
 
-            if distQUADRIL < 320 and distPE >= 80:
+            if distQUADRIL <= 540 and distPE >= 250:
                 check = True # Quando o ultimo movimento é feito altera a variável para true
              # Para permitir que outro polichinelo seja finalizado e computado
 
@@ -304,25 +307,25 @@ def agachamento():
 
             texto = f'QTD {contador}'
 
-            if distQUADRIL >= 400 and check == True:
+            if distQUADRIL >= 660 and check == True:
                 texto = f'Abaixe sua camera'
 
 
 
             ### Função que cria a forma
             # De um retângulo no video
-            cv2.rectangle(img,(20,240),(280,120),(255,0,0),-1)
+            cv2.rectangle(novaimg,(20,240),(280,120),(255,0,0),-1)
 
             ### Função que cria a forma
             # De um retângulo no video
 
             # Função para adicionar um texto a área de informações	
-            cv2.putText(img,texto,(40,200),cv2.FONT_HERSHEY_SIMPLEX,2,(255,255,255),5)
+            cv2.putText(novaimg,texto,(40,200),cv2.FONT_HERSHEY_SIMPLEX,2,(255,255,255),5)
             
 
 
 
-        cv2.imshow('Resultado',img)
+        cv2.imshow('Resultado',novaimg)
         cv2.waitKey(40)
 
 
@@ -350,6 +353,8 @@ def flexao():
         # A conversão de uma imagem opencv2 para uma imagem RGB
         videoRGB = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
 
+        novaimg = cv2.resize(img, (1280, 900))
+
 
         # Essa variável vai armazenar o resultado do processamento do nosso video
         # Após o computador verificar se realmente existe um corpo no video
@@ -366,11 +371,11 @@ def flexao():
 
         # Esse método nós usamos para desenhar as ligações entre os pontos
         # Armazenados na variável points
-        draw.draw_landmarks(img,points,pose.POSE_CONNECTIONS)
+        draw.draw_landmarks(novaimg,points,pose.POSE_CONNECTIONS)
 
 
         # Extraindo as dimensões da imagem
-        h,w,_ = img.shape
+        h,w,_ = novaimg.shape
 
 
 
@@ -406,18 +411,18 @@ def flexao():
             # Condicionais para verificar as distâncias descrevidas a cima
             # E verificar se os polichinelos foram executados com base
             # Na distância das mãos e dos pés
-            if check == True and omDY >= 400 and distCABECA >= 300:
+            if check == True and omDY >= 740 and distCABECA >= 840:
                 if mn.modo == 'Personal':
                     contador -=1
                     exercicios['repetições'][3] -= 1
+                    check = False
                 else:
                     contador +=1
                     exercicios['repetições'][3] -= 1
+                    check = False
         
-                check = False # Alterando a variável check para falsa para não contar
-                 # Mais de um polichinelo
 
-            if omDY < 400 and distCABECA >= 400:
+            if omDY < 650 and distCABECA >= 840:
                 check = True # Quando o ultimo movimento é feito altera a variável para true
              # Para permitir que outro polichinelo seja finalizado e computado
 
@@ -439,18 +444,18 @@ def flexao():
 
             ### Função que cria a forma
             # De um retângulo no video
-            cv2.rectangle(img,(20,240),(280,120),(255,0,0),-1)
+            cv2.rectangle(novaimg,(20,240),(280,120),(255,0,0),-1)
 
             ### Função que cria a forma
             # De um retângulo no video
 
             # Função para adicionar um texto a área de informações	
-            cv2.putText(img,texto,(40,200),cv2.FONT_HERSHEY_SIMPLEX,2,(255,255,255),5)
+            cv2.putText(novaimg,texto,(40,200),cv2.FONT_HERSHEY_SIMPLEX,2,(255,255,255),5)
             
 
 
 
-        cv2.imshow('Resultado',img)
+        cv2.imshow('Resultado',novaimg)
         cv2.waitKey(40)
 
 
@@ -477,6 +482,8 @@ def rosca_direta():
         # A conversão de uma imagem opencv2 para uma imagem RGB
         videoRGB = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
 
+        novaimg = cv2.resize(img, (1280, 900))
+
 
         # Essa variável vai armazenar o resultado do processamento do nosso video
         # Após o computador verificar se realmente existe um corpo no video
@@ -493,11 +500,11 @@ def rosca_direta():
 
         # Esse método nós usamos para desenhar as ligações entre os pontos
         # Armazenados na variável points
-        draw.draw_landmarks(img,points,pose.POSE_CONNECTIONS)
+        draw.draw_landmarks(novaimg,points,pose.POSE_CONNECTIONS)
 
 
         # Extraindo as dimensões da imagem
-        h,w,_ = img.shape
+        h,w,_ = novaimg.shape
 
 
 
@@ -579,16 +586,16 @@ def rosca_direta():
 
             ### Função que cria a forma
             # De um retângulo no video
-            cv2.rectangle(img,(20,240),(280,120),(255,0,0),-1)
+            cv2.rectangle(novaimg,(20,240),(280,120),(255,0,0),-1)
 
             ### Função que cria a forma
             # De um retângulo no video
 
             # Função para adicionar um texto a área de informações	
-            cv2.putText(img,texto,(40,200),cv2.FONT_HERSHEY_SIMPLEX,2,(255,255,255),5)
+            cv2.putText(novaimg,texto,(40,200),cv2.FONT_HERSHEY_SIMPLEX,2,(255,255,255),5)
             
 
 
 
-        cv2.imshow('Resultado',img)
+        cv2.imshow('Resultado',novaimg)
         cv2.waitKey(40)

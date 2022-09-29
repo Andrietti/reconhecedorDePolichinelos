@@ -4,10 +4,6 @@ import modo
 
 
 
-
-
-
-
 theme = sg.theme('reddit')
 
 layout = [
