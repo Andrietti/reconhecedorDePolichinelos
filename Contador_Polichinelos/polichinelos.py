@@ -14,8 +14,9 @@ exercicios = {
         'repetições': [20, 20, 20 ,20]
     }
 
-dataframe = pd.DataFrame(exercicios)
+dataframe = pd.read_excel('df.xlsx')
 
+print(dataframe)
         
 
 
@@ -150,8 +151,10 @@ def polichinelos():
             if check == True and distMO <=150 and distPE >=150:
                 if mn.modo == 'Personal':
                     contador -=1
+                    exercicios['repetições'][0] -= 1
                 else:
                     contador +=1
+                    exercicios['repetições'][0] -= 1
                 
                 
                 check = False # Alterando a variável check para falsa para não contar
@@ -197,7 +200,10 @@ def polichinelos():
 
 def agachamento():
 
-    contador = dataframe['repetições'][0]
+    if mn.modo == 'Personal':
+        contador = dataframe['repetições'][1]
+    else:
+        contador = 0
     check = True
     
     while True: # Loop para rodar o video
@@ -271,7 +277,12 @@ def agachamento():
 
 
             if check == True and distQUADRIL >= 370 and distPE >= 80:
-                contador -=1
+                if mn.modo == 'Personal':
+                    contador -=1
+                    exercicios['repetições'][1] -= 1
+                else:
+                    contador +=1
+                    exercicios['repetições'][1] -= 1
                 check = False # Alterando a variável check para falsa para não contar
                  # Mais de um polichinelo
 
@@ -318,7 +329,10 @@ def agachamento():
 def flexao():
 
 
-    contador = dataframe['repetições'][0]
+    if mn.modo == 'Personal':
+        contador = dataframe['repetições'][3]
+    else:
+        contador = 0
     check = True
     
     while True: # Loop para rodar o video
@@ -393,7 +407,13 @@ def flexao():
             # E verificar se os polichinelos foram executados com base
             # Na distância das mãos e dos pés
             if check == True and omDY >= 400 and distCABECA >= 300:
-                contador -=1
+                if mn.modo == 'Personal':
+                    contador -=1
+                    exercicios['repetições'][3] -= 1
+                else:
+                    contador +=1
+                    exercicios['repetições'][3] -= 1
+        
                 check = False # Alterando a variável check para falsa para não contar
                  # Mais de um polichinelo
 
@@ -437,7 +457,7 @@ def flexao():
 def rosca_direta():
 
     if mn.modo == 'Personal':
-        contador = dataframe['repetições'][0]
+        contador = dataframe['repetições'][2]
     else:
         contador = 0
     check = True
