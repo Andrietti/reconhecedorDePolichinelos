@@ -6,6 +6,26 @@ import keyboard
 import pandas as pd
 import PySimpleGUI as sg
 import modo as mn
+import sqlite3 as sq
+
+conexao = sq.connect('banco.db')
+
+cursor = conexao.cursor()
+
+
+conexao.execute('''CREATE TABLE IF NOT EXISTS exerc
+                   (
+                    Pol       INT,
+                    Flex       INT,
+                    Aga        INT,
+                    Rosca       INT);''')
+
+conexao.commit()
+
+cursor.execute('''INSERT INTO exerc (Flex, Aga, Rosca, Pol)
+VALUES (0, 0, 0, 0)''')
+
+conexao.commit()
 
 
  
@@ -199,6 +219,17 @@ def polichinelos():
 
         cv2.imshow('Resultado',novaimg)
         cv2.waitKey(40)
+        
+    cursor.execute('SELECT Pol FROM exerc')
+    res = cursor.fetchone()[0]
+
+    print(res)
+            
+    cursor.execute(f"""
+    UPDATE exerc SET Pol = '{contador + res}'
+
+    """)
+    conexao.commit()
 
 def agachamento():
 
@@ -327,6 +358,17 @@ def agachamento():
 
         cv2.imshow('Resultado',novaimg)
         cv2.waitKey(40)
+
+    cursor.execute('SELECT Aga FROM exerc')
+    res = cursor.fetchone()[0]
+
+    print(res)
+            
+    cursor.execute(f"""
+    UPDATE exerc SET Aga = '{contador + res}'
+
+    """)
+    conexao.commit()
 
 
 def flexao():
@@ -457,6 +499,17 @@ def flexao():
 
         cv2.imshow('Resultado',novaimg)
         cv2.waitKey(40)
+
+    cursor.execute('SELECT Flex FROM exerc')
+    res = cursor.fetchone()[0]
+
+    print(res)
+            
+    cursor.execute(f"""
+    UPDATE exerc SET Flex = '{contador + res}'
+
+    """)
+    conexao.commit()
 
 
 def rosca_direta():
@@ -600,4 +653,14 @@ def rosca_direta():
         cv2.imshow('Resultado',novaimg)
         cv2.waitKey(40)
 
+    cursor.execute('SELECT Rosca FROM exerc')
+    res = cursor.fetchone()[0]
+
+    print(res)
+            
+    cursor.execute(f"""
+    UPDATE exerc SET Rosca = '{contador + res}'
+
+    """)
+    conexao.commit()
 
