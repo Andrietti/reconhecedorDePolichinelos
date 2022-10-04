@@ -313,14 +313,14 @@ def agachamento():
 
 
             ### Função que cria a forma
-            # De um retângulo no video
-            cv2.rectangle(novaimg,(20,240),(280,120),(255,0,0),-1)
+            # De um retângulo no video'
+            cv2.rectangle(novaimg,(1200,800),(50,700),(255,0,0),-1)
 
             ### Função que cria a forma
             # De um retângulo no video
 
             # Função para adicionar um texto a área de informações	
-            cv2.putText(novaimg,texto,(40,200),cv2.FONT_HERSHEY_SIMPLEX,2,(255,255,255),5)
+            cv2.putText(novaimg,texto,(40,760),cv2.FONT_HERSHEY_SIMPLEX,2,(255,255,255),5)
             
 
 
@@ -444,13 +444,13 @@ def flexao():
 
             ### Função que cria a forma
             # De um retângulo no video
-            cv2.rectangle(novaimg,(20,240),(280,120),(255,0,0),-1)
+            cv2.rectangle(novaimg,(1200,800),(50,700),(255,0,0),-1)
 
             ### Função que cria a forma
             # De um retângulo no video
 
             # Função para adicionar um texto a área de informações	
-            cv2.putText(novaimg,texto,(40,200),cv2.FONT_HERSHEY_SIMPLEX,2,(255,255,255),5)
+            cv2.putText(novaimg,texto,(40,760),cv2.FONT_HERSHEY_SIMPLEX,2,(255,255,255),5)
             
 
 
@@ -586,16 +586,18 @@ def rosca_direta():
 
             ### Função que cria a forma
             # De um retângulo no video
-            cv2.rectangle(novaimg,(20,240),(280,120),(255,0,0),-1)
+            cv2.rectangle(novaimg,(1200,800),(50,700),(255,0,0),-1)
 
             ### Função que cria a forma
             # De um retângulo no video
 
             # Função para adicionar um texto a área de informações	
-            cv2.putText(novaimg,texto,(40,200),cv2.FONT_HERSHEY_SIMPLEX,2,(255,255,255),5)
+            cv2.putText(novaimg,texto,(40,760),cv2.FONT_HERSHEY_SIMPLEX,2,(255,255,255),5)
             
 
 
 
         cv2.imshow('Resultado',novaimg)
         cv2.waitKey(40)
+
+
